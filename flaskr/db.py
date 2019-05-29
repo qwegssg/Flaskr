@@ -43,5 +43,6 @@ def init_db_command():
 # init_app takes an application and does the registration for close_db and init_db functions.
 def init_app(app):
     app.teardown_appcontext(close_db)
+    # register the command
     app.cli.add_command(init_db_command)
 
