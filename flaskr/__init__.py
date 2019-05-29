@@ -1,3 +1,16 @@
+# The __init__.py serves double duty: 
+# it will contain the application factory, and it tells Python 
+# that the flaskr directory should be treated as a package.
+
+# Creating a global Flask instance directly can cause some 
+# tricky issues as the project grows. Therefore, we create 
+# Flask instance inside a function -- application factory.
+
+# Application factory:
+# A function that any configuration, registration, 
+# and other setup the application needs will happen inside the function, 
+# then the application will be returned.
+
 import os
 
 from flask import Flask
@@ -19,6 +32,9 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     # ensure the instance folder exists
+    # The instance folder is located outside the flaskr package 
+    # and can hold local data that shouldn’t be committed to version control, 
+    # such as configuration secrets and the database file.
     try:
         os.makedirs(app.instance_path)
     except OSError:
@@ -28,5 +44,8 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+
+    from . import db
+    db.init_app(app)
 
     return app
