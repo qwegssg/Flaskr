@@ -28,6 +28,9 @@ def register():
         # and a tuple of values to replace the placeholders with.
         # fetchone():
         # returns one row from the query. If the query returned no results, it returns None. 
+        
+        # It's important to always fully validate the data on the server, 
+        # even if the client does some validation as well.
         if not username:
             error = 'Username is required.'
         elif not password:
