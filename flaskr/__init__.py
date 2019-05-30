@@ -48,4 +48,9 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
+    # The authentication blueprint will have views 
+    # to register new users and to log in and log out.
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     return app
