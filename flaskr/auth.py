@@ -71,7 +71,7 @@ def login():
 
         # session is a dict (key-value pair) that stores data across requests.\
         # session stores user's id
-        # When validation succeeds, the user’s id is stored in a new session. 
+        # When validation succeeds, the user's id is stored in a new session. 
         # The data is stored in a cookie that is sent to the browser, 
         # and the browser then sends it back with subsequent requests.
         if error is None:
@@ -90,7 +90,7 @@ def login():
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
-    # gets that user’s data from the database, storing it on g.user, 
+    # gets that user's data from the database, storing it on g.user, 
     # which lasts for the length of the request. 
     if user_id is None:
         g.user = None

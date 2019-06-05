@@ -33,7 +33,7 @@ def create_app(test_config=None):
 
     # ensure the instance folder exists
     # The instance folder is located outside the flaskr package 
-    # and can hold local data that shouldn’t be committed to version control, 
+    # and can hold local data that shouldn't be committed to version control,
     # such as configuration secrets and the database file.
     try:
         os.makedirs(app.instance_path)
