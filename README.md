@@ -19,7 +19,8 @@ $env:FLASK_APP = "flaskr"
 $env:FLASK_ENV = "development"
 flask run
 ```
-<br>
+<br>  
+
 ### Initialize the Database File:
 Run the init-db command:
 ```
