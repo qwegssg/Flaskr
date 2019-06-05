@@ -1,5 +1,5 @@
 # Flaskr
-### run your application:
+### Run your application:
 
 For Linux and Mac:
 ```  
@@ -19,7 +19,7 @@ $env:FLASK_APP = "flaskr"
 $env:FLASK_ENV = "development"
 flask run
 ```
-  
+<br>
 ### Initialize the Database File:
 Run the init-db command:
 ```
