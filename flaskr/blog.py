@@ -9,6 +9,9 @@ from flaskr.db import get_db
 bp = Blueprint('blog', __name__)
 
 
+# show all of the posts, most recent first
+# a JOIN is used so that the author information 
+# from the user table is available in the result.
 @bp.route('/')
 def index():
     db = get_db()
@@ -46,6 +49,10 @@ def create():
     return render_template('blog/create.html')
 
 
+# Both the update and delete views will need to 
+# fetch a post by id and check if the author matches the logged in user. 
+# thus, write a get_post function to get the post 
+# and call it from each view to avoid duplicating code.
 def get_post(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, title, body, created, author_id, username'
@@ -57,12 +64,17 @@ def get_post(id, check_author=True):
     if post is None:
         abort(404, "Post id {0} doesn't exist.".format(id))
 
+    # check_author ???
     if check_author and post['author_id'] != g.user['id']:
         abort(403)
+
+    print(post)
 
     return post
 
 
+# ensure integer is provided: 
+# if <int:id> is not specified and instead <id> is used , it will be a string!
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):

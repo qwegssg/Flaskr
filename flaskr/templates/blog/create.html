@@ -2,6 +2,7 @@
 
 {% block header %}
   <h1>{% block title %}New Post{% endblock %}</h1>
+  <a class="action" href="{{ url_for('blog.index') }}">Back</a>
 {% endblock %}
 
 {% block content %}
